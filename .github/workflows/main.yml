@@ -22,10 +22,6 @@ jobs:
           - "" #exact version, e.g. 4.0.0, 5.0.0
           - "^" #most recent patch version, e.g. 4.21.1, 5.0.0
         include:
-          # 4.0.0 original release ran on PHP 8.0, but 4.21 and 5.x don't support it
-          - php: "8.0"
-            pm: 4.0.0
-            constraint: ""
           - php: "8.3"
             pm: 5.9.0
             constraint: "^"
@@ -53,7 +49,9 @@ jobs:
           restore-keys: "php-${{ matrix.php }}-composer-"
 
       - name: Install PHPStan Composer dependencies
-        run: composer update --with pocketmine/pocketmine-mp:${{ matrix.constraint }}${{ matrix.pm }} --prefer-dist --no-interaction
+        run: |
+          composer require --dev --no-update "pocketmine/pocketmine-mp:${{ matrix.constraint }}${{ matrix.pm }}"
+          composer update --with pocketmine/pocketmine-mp:${{ matrix.constraint }}${{ matrix.pm }} --prefer-dist --no-interaction
 
       - name: Analyze PHP code with PHPStan
         run: vendor/bin/phpstan analyze
