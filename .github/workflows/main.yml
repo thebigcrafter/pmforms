@@ -51,7 +51,7 @@ jobs:
       - name: Install PHPStan Composer dependencies
         run: |
           composer require --dev --no-update "pocketmine/pocketmine-mp:${{ matrix.constraint }}${{ matrix.pm }}"
-          composer update --with pocketmine/pocketmine-mp:${{ matrix.constraint }}${{ matrix.pm }} --prefer-dist --no-interaction
+          composer update --with pocketmine/pocketmine-mp:${{ matrix.constraint }}${{ matrix.pm }} --prefer-dist --no-interaction --no-security-blocking
 
       - name: Analyze PHP code with PHPStan
         run: vendor/bin/phpstan analyze
