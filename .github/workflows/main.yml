@@ -1,4 +1,4 @@
-name: CI
+name: Analyze PHP compatibility across PocketMine-MP versions
 
 on:
   push:
@@ -7,7 +7,7 @@ on:
 
 jobs:
   build:
-    name: PHPStan analysis (PM ${{ matrix.constraint }}${{ matrix.pm }}, PHP ${{ matrix.php }})
+    name: Analyze PHPStan compatibility (PM ${{ matrix.constraint }}${{ matrix.pm }}, PHP ${{ matrix.php }})
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
@@ -37,7 +37,7 @@ jobs:
         id: major
         run: echo PM_VERSION_MAJOR=$(echo ${{ matrix.pm }} | cut -d. -f1) >> $GITHUB_OUTPUT
 
-      - name: Setup PHP
+      - name: Set up PHP environment
         uses: pmmp/setup-php-action@3.2.0
         with:
           php-version: ${{ matrix.php }}
@@ -55,5 +55,5 @@ jobs:
       - name: Install PHPStan Composer dependencies
         run: composer update --with pocketmine/pocketmine-mp:${{ matrix.constraint }}${{ matrix.pm }} --prefer-dist --no-interaction
 
-      - name: Run PHPStan
+      - name: Analyze PHP code with PHPStan
         run: vendor/bin/phpstan analyze
