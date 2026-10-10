@@ -4,10 +4,9 @@
 	"description": "Form API library for PocketMine-MP plugins",
 	"license": "LGPL-3.0",
 	"minimum-stability": "dev",
-	"require": {
-		"pocketmine/pocketmine-mp": "^4.0.0 || ^5.0.0"
-	},
+	"require": {},
 	"require-dev": {
+		"pocketmine/pocketmine-mp": "^4.0.0 || ^5.0.0",
 		"phpstan/phpstan": "^1.2.0",
 		"phpstan/phpstan-strict-rules": "^1.0",
 		"phpstan/extension-installer": "^1.0"

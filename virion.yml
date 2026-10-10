@@ -1,5 +1,5 @@
 name: pmforms
-version: 2.3.1
+version: 2.3.2
 antigen: dktapps\pmforms
 api: [4.0.0, 5.0.0]
 authors: [dktapps]
